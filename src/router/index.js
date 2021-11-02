@@ -19,7 +19,23 @@ const routes = [
     path:'/perfil',
     name:'Perfil',
     component: () => import('../views/Perfil')
+  },
+  {
+    path:'/detalle/:id',
+    name:'Detalle',
+    component:() => import('../views/Detalle')
+  },
+  {
+    path:'/disfraces',
+    name:'Disfraces',
+    component: () => import('../views/Disfraz')
+  },
+  {
+    path:'/categorias',
+    name:'Categorias',
+    component: () => import('../views/Categorias')
   }
+
 ]
 
 const router = createRouter({

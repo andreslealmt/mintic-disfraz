@@ -1,20 +1,32 @@
 <template>
+<div class="col-sm-4">   
     <div class="card mt-5 my-5 tarjeta">
-        <img src="https://s1.eestatic.com/2017/02/24/social/carnavales-la_jungla_-_social_196241196_29782962_1024x576.jpg" class="card-img-top" alt="...">
+        <img :src="card.imagen" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-        
-        <div class="card-body">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
-        </div>
+            <h5 class="card-title">{{card.name}}</h5>
+            <p class="card-text"><span class="detalle">Marca: </span> {{card.brand}}</p>
+            <p class="card-text"><span class="detalle">Año: </span> {{card.year}}</p>
+            <p class="card-text"><span class="detalle">Descripción: </span> {{card.description}}</p>
+            
+            
+            
+            <span class="detalle">Estado: </span>  
+                            <span class="rojo" v-if="card.reserva">
+                                 Reservado
+                            </span> 
+                            <span v-else class="reservado">
+                               Disponible 
+                            </span>
+                <br>
+                <router-link :to="'/detalle/'+card.id" class="card-link">Ver</router-link>
+        </div>                
     </div>
+    </div> 
 </template>
 
 <script>
 export default {
+    props:['card'],
     name:'Card',
     setup() {
         
@@ -24,16 +36,30 @@ export default {
 <style>
 .tarjeta{
     width: 50vh;
-    height: 30vw;    
+    height: 40vw;         
 }
 
 .tarjeta:hover {
     /* cursor: pointer; */
-    box-shadow: 5px 10px 8px 10px #888888;
+    box-shadow: 5px 8px 8px 4px #b6ddda;
 }
 
 img{
     height: 15vw;
+    padding: 15px;
 }
+
+.detalle {
+    color: cadetblue;
+}
+
+.col-sm-4 {
+    margin-left: 3vw;
+}
+
+.rojo {
+    color: red;
+}
+
 
 </style>
