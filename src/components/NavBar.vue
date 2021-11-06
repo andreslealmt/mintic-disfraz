@@ -14,8 +14,21 @@
                     <router-link to="/" class="nav-link" aria-current="page">Inicio</router-link>
                 </li>               
                 <li class="nav-item dropdown">
-
+                    <!-- drop downnnnn -->
                     <div class="dropdown">
+                        <a class="nav-link dropdown-toggle dropdown" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="nombre-usuario">Admin</span>                                                                                
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                <li @click="cambioCategoria('todo')"><a class="dropdown-item" href="#">Todo</a></li>                    
+                                <li><hr class="dropdown-divider"></li>
+                                <li v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)"><a class="dropdown-item" href="#">{{item.name}}</a></li>                                                                        
+                            </ul>
+                        
+                    </div>
+
+                    <!-- <div class="dropdown">
                             <a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             categories
                             </a>
@@ -25,7 +38,7 @@
                                 <li v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)"><a class="dropdown-item" href="#">{{item.name}}</a></li>                                                                        
                             </ul>
 
-                    </div>
+                    </div> -->
                 
                 </li>
                  <li class="nav-item left" >
