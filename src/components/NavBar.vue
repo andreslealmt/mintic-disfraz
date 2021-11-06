@@ -14,15 +14,19 @@
                 <router-link to="/" class="nav-link" aria-current="page">Inicio</router-link>
                 </li>               
                 <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Categorias
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                    <li @click="cambioCategoria('todo')"><a class="dropdown-item" href="#">Todo</a></li>                    
-                    <li v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)"><a class="dropdown-item" href="#">{{item.name}}</a></li>                    
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">asdf</a></li>
-                </ul>
+
+                <div class="dropdown">
+                        <a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Categorias
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                            <li @click="cambioCategoria('todo')"><a class="dropdown-item" href="#">Todo</a></li>                    
+                            <li><hr class="dropdown-divider"></li>
+                            <li v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)"><a class="dropdown-item" href="#">{{item.name}}</a></li>                                                                        
+                        </ul>
+
+                </div>
+                
                 </li>
                  <li class="nav-item left" >
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
