@@ -17,9 +17,11 @@
                     <!-- drop downnnnn -->
 
                     <div class="dropdown">
-                        <span>Mouse over me</span>
+                        <span class="nav-link">Categorias</span>
                         <div class="dropdown-content">
-                        <p>Hello World!</p>
+                            <p class="item-category" @click="cambioCategoria('todo')">todo</p>
+                            <p class="item-category" v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)">{{item.name}}</p>
+                        
                         </div>
                     </div>
 
@@ -122,6 +124,10 @@ export default {
 </script>
 
 <style>
+
+.item-category {
+    cursor: pointer;
+}
 
 .logo {
     width: 5vw;
