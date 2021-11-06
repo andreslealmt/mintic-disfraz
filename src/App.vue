@@ -12,6 +12,7 @@
 // @ is an alias to /src
 import NavBar from './components/NavBar.vue';
 import Footer from './components/Footer.vue';
+import { useStore } from 'vuex';
 
 export default {
   components:{
@@ -19,6 +20,10 @@ export default {
     Footer
   },
   setup() {
+
+    const store = useStore();
+
+    store.dispatch('leerUsuario');
     
   },
 }
