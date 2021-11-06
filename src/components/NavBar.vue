@@ -15,18 +15,14 @@
                 </li>               
                 <li class="nav-item dropdown">
                     <!-- drop downnnnn -->
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle dropdown" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="nombre-usuario">Admin</span>                                                                                
-                        </a>
 
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                                <li @click="cambioCategoria('todo')"><a class="dropdown-item" href="#">Todo</a></li>                    
-                                <li><hr class="dropdown-divider"></li>
-                                <li v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)"><a class="dropdown-item" href="#">{{item.name}}</a></li>                                                                        
-                            </ul>
-                        
+                    <div class="dropdown">
+                        <span>Mouse over me</span>
+                        <div class="dropdown-content">
+                        <p>Hello World!</p>
+                        </div>
                     </div>
+
 
                     <!-- <div class="dropdown">
                             <a class="nav-link dropdown-toggle dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -179,6 +175,25 @@ export default {
 .cerrar-sesion:hover {
     cursor: pointer;
     color: blue;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 
