@@ -59,6 +59,7 @@ export default createStore({
           router.push('/');
         }else{
           console.log('error de usuario o contraseña')
+          alert('error de usuario o contraseña');
         }
         
         

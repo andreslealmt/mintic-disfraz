@@ -20,17 +20,28 @@
                                Disponible 
                             </span>
                         </li>
-                    </ul>
-                     <ul class="list-group list-group-flush">
-                         <li class="list-group-item"><span class="sub-title">Mensajes: </span></li>
-                        <li class="list-group-item" v-for="mensaje in disfraz.messages" :key="mensaje.id">{{mensaje.messageText}}</li>
-                        
-                    </ul>
+                    </ul>                     
                     <div class="card-body">
-                        <button v-if="!disfraz.reserva" @click="reservar(disfraz.id)" type="button" class="btn btn-outline-primary">                               
+                        <button v-if="!disfraz.reserva" @click="reservar(disfraz.id)" type="button" class="btn btn-primary">                               
                             Reservar
                         </button> 
                     </div>
+
+                    <ul class="list-group list-group-flush">
+                         <li class="list-group-item"><span class="sub-title">Mensajes: </span></li>
+                        <li class="list-group-item" v-for="mensaje in disfraz.messages" :key="mensaje.id"><i>{{mensaje.messageText}}</i></li>
+                        
+                    </ul>
+                    <div class="input-group">
+                    <span class="input-group-text">Deja tu <br> mensaje aqui</span>
+                    <textarea v-model="mensaje" class="form-control text-area" aria-label="With textarea"></textarea>
+                    </div>
+                  
+                        <button type="button" @click="enviarMensaje()" class="my-4 btn btn-outline-success btn-area">                               
+                            Enviar
+                        </button> 
+                  
+
                     </div>
             </div>
         </div>
@@ -50,6 +61,7 @@ export default {
         const route = useRoute();
         const store = useStore();
         const url = store.state.url;
+        const mensaje = ref();
 
         const usuario = store.state.usuario;
         
@@ -59,6 +71,32 @@ export default {
                     "id": '',"name": '',"description": ''},
                 "messages": [],"reservations": []
             });
+
+        const enviarMensaje = async () => {
+            if(!usuario){
+                return alert('Debe iniciar sesion para comentar')
+            }
+            try {
+                 const res = await fetch(`${url}`+`/api/Message/save`,{
+                    method:'POST',
+                    mode: 'cors',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify({
+                        "messageText":mensaje.value,
+                        "client":{"idClient":usuario.usuario.idClient},
+                        "costume":{"id":disfraz.value.id}
+                    })
+                });
+                const datos = await res.json();
+                mensaje.value = '';
+                cargarDetalles();
+            } catch (error) {
+                console.error(error)
+            }
+        }
 
         const reservar = async (id) => {
 
@@ -117,7 +155,7 @@ export default {
         
         
         return {
-                disfraz, reservar, url
+                disfraz, reservar, url, mensaje, enviarMensaje
         }
         
     },
@@ -125,6 +163,12 @@ export default {
 </script>
 
 <style>
+.btn-area {
+
+}
+.text-area {
+    padding: 15px;;
+}
 
 .container-detalles {
    background-image: linear-gradient(to bottom right, rgb(51, 159, 202), rgb(96, 46, 179));
