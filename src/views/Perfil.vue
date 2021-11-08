@@ -81,7 +81,10 @@ export default {
         
         const actualizarUsuario = async () => {
             console.log(password.value, usuario.value)
-            usuario.value.password = password.value;
+            if(password.value){
+                usuario.value.password = password.value;
+            }
+            
             try {
                 const res = await fetch(`${url}`+'/api/Client/update',{
                     method:'PUT',
