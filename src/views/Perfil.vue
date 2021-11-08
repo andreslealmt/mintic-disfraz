@@ -46,12 +46,7 @@
             <span class="input-group-text" id="addon-wrapping">Edad</span>
             <input v-model="usuario.age" type="text" class="form-control" placeholder="edad" aria-label="Recipient's username" aria-describedby="basic-addon2">
             
-        </div>
-
-        <div class="input-group flex-nowrap mt-3">                        
-            <span class="input-group-text" id="addon-wrapping">password</span>
-            <input  v-model="password" type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
-        </div>
+        </div>  
 
         
 
@@ -80,11 +75,8 @@ export default {
 
         
         const actualizarUsuario = async () => {
-            console.log(password.value, usuario.value)
-            if(password.value){
-                usuario.value.password = password.value;
-            }
-            
+           
+            //console.log(usuario.value.password)
             try {
                 const res = await fetch(`${url}`+'/api/Client/update',{
                     method:'PUT',
@@ -102,10 +94,7 @@ export default {
             } catch (error) {
                 console.error(error)
             }
-        }
-
-        
-        
+        }        
 
         return {
             usuario, password, actualizarUsuario
