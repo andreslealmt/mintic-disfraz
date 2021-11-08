@@ -1,12 +1,12 @@
 <template>
 <div class="col-sm-4">   
-    <div class="card mt-5 my-5 tarjeta">
-        <img :src="card.imagen" class="card-img-top" alt="...">
+    <div class="card mt-5 my-5 tarjeta-home">
+        <img :src="card.imagen" class="card-img-top img" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{card.name}}</h5>
-            <p class="card-text"><span class="detalle">Marca: </span> {{card.brand}}</p>
+            <!-- <p class="card-text"><span class="detalle">Marca: </span> {{card.brand}}</p>
             <p class="card-text"><span class="detalle">Año: </span> {{card.year}}</p>
-            <p class="card-text"><span class="detalle">Descripción: </span> {{card.description}}</p>
+            <p class="card-text"><span class="detalle">Descripción: </span> {{card.description}}</p> -->
             
             
             
@@ -14,7 +14,7 @@
                             <span class="rojo" v-if="card.reserva">
                                  Reservado
                             </span> 
-                            <span v-else class="reservado">
+                            <span v-else class="azul">
                                Disponible 
                             </span>
                 <br>
@@ -34,31 +34,37 @@ export default {
 }
 </script>
 <style>
-.tarjeta{
+
+.tarjeta-home{
     width: 50vh;
-    height: 40vw;         
+    height: 25vw;   
+    background-color: #0d887e;      
 }
 
-.tarjeta:hover {
+.tarjeta-home:hover {
     /* cursor: pointer; */
-    box-shadow: 5px 8px 8px 4px #b6ddda;
+    box-shadow: 5px 8px 6px 2px #30385c;
 }
 
-img{
+.img{
     height: 15vw;
-    padding: 15px;
+    /* padding: 15px; */
 }
+
 
 .detalle {
     color: cadetblue;
 }
 
 .col-sm-4 {
-    margin-left: 3vw;
+    /* margin-left: 1vw; */
 }
 
 .rojo {
     color: red;
+}
+.azul {
+    color: blue;
 }
 
 

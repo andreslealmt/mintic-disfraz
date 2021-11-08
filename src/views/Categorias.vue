@@ -103,6 +103,7 @@ export default {
                 cargarCategorias();
             } catch (error) {
                 console.log(error)
+                alert('no se puede elimiar, restrigsion de clave foranea en tabla Disfraz');
             }
         }
 

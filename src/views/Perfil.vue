@@ -10,12 +10,12 @@
                         <div class="card tarjeta-perfil" >                            
                             <div class="card-body">
                                 <h5 class="card-title">Información Cuenta</h5>
-                                <p class="card-text">Nombre</p>
+                                <p class="card-text"><span style="font-weight:bold;">Nombre: </span>{{usuario.name}} </p>
                             </div>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Correo</li>
-                                <li class="list-group-item">Edad</li>
-                                <li class="list-group-item">Contraseña</li>
+                                <li class="list-group-item"><span style="font-weight:bold;">Correo: </span>{{usuario.email}} </li>
+                                <li class="list-group-item"><span style="font-weight:bold;">Edad: </span>{{usuario.age}} </li>
+                                
                             </ul>
                             <div class="card-body">
                                 <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Actualizar</button>                               
@@ -40,38 +40,73 @@
       <div class="modal-body">
         <div class="input-group flex-nowrap mt-3">                        
             <span class="input-group-text" id="addon-wrapping">Nombre</span>
-            <input value="" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+            <input v-model="usuario.name" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
         </div>
         <div class="input-group mb-3 mt-3">
-            <span class="input-group-text" id="addon-wrapping">Correo</span>
-            <input value="" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2">@example.com</span>
-        </div>
-
-        <div class="input-group flex-nowrap mt-3">                        
             <span class="input-group-text" id="addon-wrapping">Edad</span>
-            <input  value="" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+            <input v-model="usuario.age" type="text" class="form-control" placeholder="edad" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            
         </div>
 
         <div class="input-group flex-nowrap mt-3">                        
-            <span class="input-group-text" id="addon-wrapping">Contraseña</span>
-            <input value="" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+            <span class="input-group-text" id="addon-wrapping">password</span>
+            <input  v-model="password" type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="addon-wrapping">
         </div>
+
         
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+        <button type="button" class="btn btn-primary" @click="actualizarUsuario()">Actualizar</button>
       </div>
     </div>
   </div>
 </div>
 </template>
 <script>
+import { computed, ref } from '@vue/reactivity';
+import { useStore } from 'vuex'
+import { onMounted } from '@vue/runtime-core';
 export default {
     name:'Perfil',
     setup() {
+        
+        const store = useStore();
+        const url = store.state.url;        
+        const usuario = computed(() => store.state.usuario.usuario);
+        const password = ref();
+        
+
+        
+        const actualizarUsuario = async () => {
+            console.log(password.value, usuario.value)
+            usuario.value.password = password.value;
+            try {
+                const res = await fetch(`${url}`+'/api/Client/update',{
+                    method:'PUT',
+                    mode: 'cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                     // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify(usuario.value)
+                });
+                const datos = await res.json();
+                console.log(datos)
+                store.dispatch('actualizarUsuario',datos);
+
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        
+        
+
+        return {
+            usuario, password, actualizarUsuario
+        }
         
     },
 }

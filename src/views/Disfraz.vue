@@ -217,6 +217,7 @@ export default {
                     body: JSON.stringify(disfraz.value)
                 });
                 const datos = await res.json();
+                disfraz.value = {};
                 console.log(datos)
                 store.dispatch('cargarCards');
             } catch (error) {

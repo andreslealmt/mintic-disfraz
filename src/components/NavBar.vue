@@ -18,7 +18,7 @@
 
                     <div class="dropdown">
                         <span class="nav-link">Categorias</span>
-                        <div class="dropdown-content">
+                        <div class="dropdown-content oscuro">
                             <p class="item-category" @click="cambioCategoria('todo')">todo</p>
                             <p class="item-category" v-for="item in categorias" :key="item.id" @click="cambioCategoria(item.name)">{{item.name}}</p>
                         
@@ -125,6 +125,21 @@ export default {
 
 <style>
 
+
+.item-category:hover {
+    background-color: rgb(67, 67, 167);
+    color: white;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.item-category:active {
+    box-shadow:3px 3px 8px 5px #5c5c5d; ;
+}
+
+.oscuro {
+    background-color: aquamarine;
+}
 .item-category {
     cursor: pointer;
 }

@@ -32,7 +32,12 @@ export default createStore({
     },
     setUsuario(state, payload){
       state.usuario = payload;
-    }
+    },
+    setUsuarioUpdate(state, payload){
+      state.usuario.usuario = payload;
+      localStorage.setItem('usuario', JSON.stringify(state.usuario));
+    },
+    
   },
   actions: {
     async login({commit, state},usuario){
@@ -47,7 +52,7 @@ export default createStore({
           body: JSON.stringify(usuario)
         });
         const datos = await res.json();
-        console.log(datos.usuario)
+        //console.log(datos.usuario)
         if(datos.usuario != null){          
           commit('setUsuario',datos);
           localStorage.setItem('usuario', JSON.stringify(datos));
@@ -68,6 +73,10 @@ export default createStore({
     cerrarSesion({commit}){
       localStorage.removeItem('usuario');
       commit('setUsuario', null);
+      router.push('/');
+    },
+    actualizarUsuario({commit},usuario){
+      commit('setUsuarioUpdate', usuario);
     },
      async cargarCards({commit}){      
         //console.log(this.state.url)

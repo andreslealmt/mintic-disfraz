@@ -13,13 +13,11 @@
                         <li class="list-group-item"><span class="sub-title">Año: </span>{{disfraz.year}}</li>
                         <li class="list-group-item">
                             <span class="sub-title">Estado: </span>
-                            <span v-if="disfraz.reserva">
+                            <span class="reservado" v-if="disfraz.reserva">
                                  Reservado
                             </span> 
-                            <span v-else class="reservado">
-                                <button @click="reservar(disfraz.id)" type="button" class="btn btn-outline-primary">                               
-                                    Reservar
-                                </button>  
+                            <span v-else class="azul">
+                               Disponible 
                             </span>
                         </li>
                     </ul>
@@ -29,7 +27,9 @@
                         
                     </ul>
                     <div class="card-body">
-                       <button v-if="disfraz.reserva" type="button" class="btn btn-outline-success">Reservar</button>                        
+                        <button v-if="!disfraz.reserva" @click="reservar(disfraz.id)" type="button" class="btn btn-outline-primary">                               
+                            Reservar
+                        </button> 
                     </div>
                     </div>
             </div>
@@ -51,6 +51,9 @@ export default {
         const store = useStore();
         const url = store.state.url;
 
+        const usuario = store.state.usuario;
+        
+
         const disfraz = ref({"id": '',"name": '',"brand": '',"imagen": '',
                 "reserva": '',"year": '',"description": '',"category": {
                     "id": '',"name": '',"description": ''},
@@ -58,13 +61,39 @@ export default {
             });
 
         const reservar = async (id) => {
-            console.log(id)
-            // try {
-            //     const res = await fetch(`${url}`+`/api/Reservar/${id}`);
 
-            // } catch (error) {
-            //     console.log(error)
-            // }
+            if(!usuario){
+                return alert('Debe iniciar sesion para poder reservar')
+            }
+
+            let fecha = new Date();   
+            let fecha2 = new Date();
+            
+            fecha2.setDate(fecha.getDate() + 5);
+            //console.log(fecha2.toDateString())
+         
+
+            try {
+                const res = await fetch(`${url}`+`/api/Reservation/save`,{
+                    method:'POST',
+                    mode: 'cors',
+                    headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify({
+                        "startDate":fecha.toDateString(),
+                        "devolutionDate":fecha2.toDateString(),
+                        "client":{"idClient":usuario.usuario.idClient},
+                        "costume":{"id":id}
+                    })
+                });
+                const datos = res.json();
+                cargarDetalles();
+
+            } catch (error) {
+                console.log(error)
+            }
         }
 
         const cargarDetalles = async () => {
@@ -74,7 +103,7 @@ export default {
                 const res = await fetch(`${store.state.url}/api/Costume/${id}`);
                 const datos = await res.json();
                 disfraz.value = datos;
-                console.log(datos)
+                //console.log(datos)
             } catch (error) {
                 console.log(error)
             }
@@ -114,6 +143,9 @@ export default {
 
 .reservado {
     color: red;
+}
+.azul {
+    color: blue;
 }
 
 .sub-title {

@@ -1,10 +1,10 @@
 <template>
     
 <div class="body">
-    <div class="container">
+    <div class="container container-registro">
         <div class="row">
             <div class="col-sm-6">
-                <div class="card mt-5" style="width: 18rem;">
+                <div class="card card-registro mt-5" style="width: 18rem;">
                     <div class="card-body">
 
                          <h5 class="card-title">Formulario De Registro</h5>
@@ -123,13 +123,13 @@ export default {
 </script>
 
 <style>
-.container, .ancla {
+.container-registro, .ancla {
     display: flex;
     justify-content: center;
     color: white;
 }
 
-.card {
+.card-registro {
     background-color: rgb(44, 53, 61);
     margin-bottom: 10vh;
 }

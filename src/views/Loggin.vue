@@ -1,9 +1,9 @@
 <template>
 <div class="body">
-    <div class="container">
+    <div class="container container-tarjeta">
         <div class="row">
             <div class="col-sm-6">
-                <div class="card mt-5" style="width: 18rem;">
+                <div class="card card-login mt-5" style="width: 18rem;">
                     <div class="card-body">
 
                          <h5 class="card-title">Ingreso</h5>
@@ -11,15 +11,15 @@
                         <p class="card-text">
                             para poder realizar pruebas como crear categorias y disfraces, debe ingresar
                             cons el siguiente usuario con privilegios de administrador.
-                            <span class="verde">usuario:</span> <span class="azul">admin@gmail.com</span><br>
-                            <span class="verde">contraseña:</span> <span class="azul">1234</span>
+                            <span class="verde">usuario:</span> <span class="azul-claro">admin@gmail.com</span><br>
+                            <span class="verde">contraseña:</span> <span class="azul-claro">1234</span>
                         </p>
 
                         <div class="input-group mb-3">                      
                             <input v-model="usuario.email" type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-3">                      
-                            <input v-model="usuario.password" type="text" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1">
+                            <input v-model="usuario.password" type="password" class="form-control" placeholder="Contraseña" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
 
                         <br>
@@ -70,13 +70,13 @@ export default {
 
 <style>
 
-.container, .ancla {
+.container-tarjeta, .ancla {
     display: flex;
     justify-content: center;
     color: white;
 }
 
-.card {
+.card-login {
     background-color: rgb(44, 53, 61);
     margin-bottom: 10vh;
 }
@@ -84,7 +84,7 @@ export default {
     color: rgb(39, 167, 39);
 }
 
-.azul {
+.azul-claro {
     color: rgb(138, 138, 214);
 }
 
