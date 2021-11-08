@@ -49,7 +49,7 @@ export default {
   .body{
     height: 100%;
     background-image: url('./../assets/flores.svg');    
-    background-size: 60vw 60vh;       
+    background-size: 100% 100%;       
     background-image: linear-gradient(to bottom right, rgb(51, 159, 202), rgb(96, 46, 179));
   }
 

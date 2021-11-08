@@ -35,15 +35,18 @@ export default {
 </script>
 <style>
 
+
+
 .tarjeta-home{
     width: 50vh;
     height: 25vw;   
-    background-color: #0d887e;      
+    /* background-color: #0d887e;       */
+    box-shadow: 5px 8px 6px 2px #30385c;
 }
 
 .tarjeta-home:hover {
     /* cursor: pointer; */
-    box-shadow: 5px 8px 6px 2px #30385c;
+    box-shadow: 5px 8px 6px 2px #3b95b1;
 }
 
 .img{
