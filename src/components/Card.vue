@@ -59,9 +59,7 @@ export default {
     color: cadetblue;
 }
 
-.col-sm-4 {
-    /* margin-left: 1vw; */
-}
+
 
 .rojo {
     color: red;

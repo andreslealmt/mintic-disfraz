@@ -4,7 +4,8 @@ import router from '../router';
 
 export default createStore({
   state: {
-    url:'http://localhost:8080',
+    //url:'http://localhost:8080',
+    url:'http://168.138.233.89:8080',
     categoria:'',
     arregloCards:[],
     cards:[],
